@@ -1,9 +1,7 @@
 # nomaCakes
 
 [![Coverage Status](https://coveralls.io/repos/github/kizzanaome/nomaCakes/badge.svg?branch=develop)](https://coveralls.io/github/kizzanaome/nomaCakes?branch=develop)
-
 [![Maintainability](https://api.codeclimate.com/v1/badges/c083d388535220ba5ccd/maintainability)](https://codeclimate.com/github/kizzanaome/nomaCakes/maintainability)
-
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c083d388535220ba5ccd/test_coverage)](https://codeclimate.com/github/kizzanaome/nomaCakes/test_coverage)
 
 This is a small web app for a cake business, nomaCakes.co that allows customers to lookup their best and desired cakes made by the company and purchase them, rate them, save them to a cart and review them.
