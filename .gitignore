@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# dotenv
+.env
+
+# virtualenv
+noma-env/
+nomaenv/
+venv/
+ENV/
+
+# Distribution / packaging / C extensions
+.Python
+.vscode/
+.DS_Store
+.idea/
+lib/
+lib64/
+parts/
+sdist/
+var/
+dist/
+build/
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*,cover
+.hypothesis/
+.pytest_cache/
+
+# pyenv
+.python-version
+
+# SQLite3
+db.sqlite3
+.vscode/
+authors/apps/.DS_Store
+**/.DS_Store
