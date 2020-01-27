@@ -52,4 +52,4 @@ Run the application
 ```
 
 You can use Postman to checkout the functionality of the api endpoints, you can download here:
-- [Postman](https://www.getpostman.com/apps) - An API testing tool for developers
+- [Postman](https://www.getpostman.com/apps) - An API testing tool for developers and engineerers.
