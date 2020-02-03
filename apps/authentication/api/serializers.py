@@ -1,5 +1,8 @@
 from rest_framework import serializers
 from ..models import User
+from django.db.models import Q
+from django.core.exceptions import ValidationError
+from django.contrib.auth import authenticate
 
 
 class SignupSerializer(serializers.ModelSerializer):
@@ -22,16 +25,39 @@ class SignupSerializer(serializers.ModelSerializer):
             },
         }
 
-
     def create(self, validated_data):
-        user = User(email = self.validated_data['email'], username = self.validated_data['username'], contact = self.validated_data['contact'])
+        user = User(email=self.validated_data['email'],
+                    username=self.validated_data['username'], contact=self.validated_data['contact'])
         password = self.validated_data['password']
         password2 = self.validated_data['password2']
 
         if password != password2:
-            raise serializers.ValidationError({'password': 'Passwords must match'})
+            raise serializers.ValidationError(
+                {'password': 'Passwords must match'})
 
         user.set_password(password)
         user.save()
 
         return user
+
+
+class LoginSerializer(serializers.ModelSerializer):
+
+    # serializer to map the login model instance into JSON format.
+
+    email = serializers.EmailField()
+    password = serializers.CharField()
+
+    class Meta:
+        """ meta class to map the serializer fields to the model field"""
+
+        model = User
+        fields = ['email', 'password']
+
+    def validate(self, data):
+        email = data.get('email', None)
+        password = data.get('password',None)
+        user = authenticate(username=email,password=password)
+        if user is None:
+                raise ValidationError("Incorrect credentials please try again")
+        return data

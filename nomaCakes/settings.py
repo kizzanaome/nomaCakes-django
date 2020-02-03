@@ -32,6 +32,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
 ]
 
+#tells django about the custom user model we created.
+AUTH_USER_MODEL = 'authentication.User'
 
 # Application definition
 
