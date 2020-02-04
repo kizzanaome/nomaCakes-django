@@ -1,8 +1,8 @@
-from rest_framework import serializers
-from ..models import User
-from django.db.models import Q
-from django.core.exceptions import ValidationError
 from django.contrib.auth import authenticate
+from django.core.exceptions import ValidationError
+from rest_framework import serializers
+
+from ..models import User
 
 
 class SignupSerializer(serializers.ModelSerializer):
@@ -46,7 +46,7 @@ class LoginSerializer(serializers.ModelSerializer):
     # serializer to map the login model instance into JSON format.
 
     email = serializers.EmailField()
-    password = serializers.CharField()
+    password = serializers.CharField(write_only=True)
 
     class Meta:
         """ meta class to map the serializer fields to the model field"""
@@ -60,4 +60,6 @@ class LoginSerializer(serializers.ModelSerializer):
         user = authenticate(username=email,password=password)
         if user is None:
                 raise ValidationError("Incorrect credentials please try again")
-        return data
+        return {
+            'email': user.email
+        }
