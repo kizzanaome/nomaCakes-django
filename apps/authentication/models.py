@@ -54,10 +54,8 @@ class User(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-
     created_at = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='last login', auto_now=True)
-
     # The `USERNAME_FIELD` property tells us which field we will use to log in.
     # In this case, we want that to be the email field.
     USERNAME_FIELD = 'email'

@@ -63,3 +63,4 @@ class LoginSerializer(serializers.ModelSerializer):
         return {
             'email': user.email
         }
+
