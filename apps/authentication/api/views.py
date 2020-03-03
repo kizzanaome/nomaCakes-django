@@ -28,12 +28,13 @@ def signup_view(request):
     data = {}
     if serializer.is_valid():
         user = serializer.save()
+
         user.is_active = False
         user.save()
         current_site = get_current_site(request)
         mail_subject ='Activate your account'
         message = render_to_string('account_activate.html', {
-            'user': user,
+            'user': user,           
             'domain': current_site.domain,
             'uuid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token' : account_activation_token.make_token(user)})

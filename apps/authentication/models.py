@@ -4,7 +4,7 @@ from django.db import models
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, username, contact, email, password=None):
+    def create_user(self, username,email,contact, password=None):
         
         if username is None:
             raise TypeError('Users must have a username.')
@@ -32,7 +32,7 @@ class UserManager(BaseUserManager):
 
         user = self.create_user(
             username = username,
-            phone = phone,
+            contact = contact,
             email = self.normalize_email(email),
             password = password
         )
@@ -46,7 +46,7 @@ class UserManager(BaseUserManager):
 # Create your models here.
 class User(AbstractBaseUser):
 
-    username = models.CharField(db_index=True, max_length=25, unique=True)
+    username = models.CharField(db_index=True, max_length=25)
     email = models.EmailField(db_index=True, verbose_name="email", unique=True)
     contact = models.CharField(db_index=True, max_length=255, unique=True)
 
