@@ -51,8 +51,9 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'apps.authentication',
-    'cakes',
-    'taggit'
+    'apps.cakes',
+    'taggit',
+    'taggit_serializer'
 ]
 
 MIDDLEWARE = [
