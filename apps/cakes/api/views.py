@@ -4,9 +4,9 @@ from rest_framework.response import Response
 
 from apps.authentication.models import User
 from apps.cakes.models import Cake
-from apps.cakes.serializers import CakesSerializer
+from apps.cakes.api.serializers import CakesSerializer
 
-
+# Create your views here.
 
 @api_view(['GET'])
 def available_cakes(request):

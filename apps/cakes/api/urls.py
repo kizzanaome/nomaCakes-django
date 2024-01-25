@@ -1,6 +1,6 @@
 from django.urls import include, path
 
-from apps.cakes.views import create_cake_view, delete_cake_view, edit_cake_view, available_cakes, view_single_cake
+from .views import create_cake_view, delete_cake_view, edit_cake_view, available_cakes, view_single_cake
 
 app_name = "cakes"
 

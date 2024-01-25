@@ -52,8 +52,8 @@ INSTALLED_APPS = [
 
     'apps.authentication',
     'apps.cakes',
-    'taggit',
-    'taggit_serializer'
+    # 'taggit',
+    # 'taggit_serializer'
 ]
 
 MIDDLEWARE = [
