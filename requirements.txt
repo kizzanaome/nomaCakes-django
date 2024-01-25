@@ -11,6 +11,6 @@ idna==2.8
 psycopg2-binary==2.8.4
 python-decouple==3.3
 pytz==2019.3
-requests==2.22.0
+requests==2.31.0
 sqlparse==0.3.0
 urllib3==1.25.8
