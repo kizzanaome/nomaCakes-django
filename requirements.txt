@@ -4,7 +4,7 @@ chardet==3.0.4
 coverage==5.0.3
 coveralls==1.10.0
 dj-database-url==0.5.0
-Django==3.2.24
+Django==3.2.25
 djangorestframework==3.11.2
 docopt==0.6.2
 idna==2.8
