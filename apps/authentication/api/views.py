@@ -18,6 +18,7 @@ from apps.authentication.models import User
 
 from .tokens import account_activation_token
 import uuid
+import os
 
 # Create your views here.
 
@@ -38,7 +39,8 @@ def signup_view(request):
             'domain': current_site.domain,
             'uuid': urlsafe_base64_encode(force_bytes(user.pk)),
             'token' : account_activation_token.make_token(user)})
-        email = EmailMessage(mail_subject,message, settings.EMAIL_HOST_USER, to=[user.email])
+        # email = EmailMessage(mail_subject, message, settings.EMAIL_HOST_USER, to=[user.email])
+        email = EmailMessage(mail_subject, message, os.environ.get("EMAIL_HOST_USER"), to=[user.email])
         email.send()
         data['response'] = 'You have successfully registered your account'\
             'please confirm your email address to complete your registration.'

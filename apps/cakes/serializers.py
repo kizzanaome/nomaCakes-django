@@ -2,18 +2,18 @@ from rest_framework import serializers
 
 from apps.cakes.models import Cake
 
-from taggit.models import Tag
-from taggit_serializer.serializers import (TagListSerializerField,
-                                           TaggitSerializer)
+# from taggit.models import Tag
+# from taggit_serializer.serializers import (TagListSerializerField,
+#                                            TaggitSerializer)
 
 
-class CakesSerializer(TaggitSerializer, serializers.Serializer):
+class CakesSerializer(serializers.Serializer):
     name = serializers.CharField()
     description = serializers.CharField()
     price = serializers.IntegerField()
     rating = serializers.CharField()
     category = serializers.CharField()
-    tags = TagListSerializerField()
+    # tags = TagListSerializerField()
     user_id = serializers.IntegerField(write_only=True)
     id= serializers.IntegerField(read_only=True)
 
