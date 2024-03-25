@@ -45,7 +45,7 @@ class UserManager(BaseUserManager):
 
 # Create your models here.
 class User(AbstractBaseUser):
-
+    id = models.AutoField(primary_key=True)
     username = models.CharField(db_index=True, max_length=25)
     email = models.EmailField(db_index=True, verbose_name="email", unique=True)
     contact = models.CharField(db_index=True, max_length=255, unique=True)

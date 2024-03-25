@@ -20,8 +20,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/authentication/', include(('apps.authentication.api.urls', 'authentication'), namespace='authentication')),
-    path('api/cakes/', include(('apps.cakes.urls', 'cakes'),namespace='cakes')),
+    path('api/users/', include(('users.urls', 'users'), namespace='users')),
+    # path('api/cakes/', include(('cakes.api.urls', 'cakes'), namespace='cakes')),
 ]
 
 if settings.DEBUG:

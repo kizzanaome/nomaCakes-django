@@ -1,0 +1,42 @@
+<!-- {% autoescape off %}
+Hi {{user.username}}
+Please click on the link to confirm your registration.
+
+http://{{ domain }}{% url 'users:activate' uuid=uuid token=token %} -->
+
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office"
+    xmlns:v="urn:schemas-microsoft-com:vml">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" type="text/css" />
+</head>
+
+<body style="margin: 0; padding: 0; font-family: Montserrat;">
+    <div style="text-align:center; margin: 0 auto; padding: 50px 0;">
+        <div style="margin-bottom: 45px;"><img style="height: 50px;"
+                src="https://res.cloudinary.com/dagartstudios/image/upload/v1621138559/logo-black_mby7p2.svg" alt="" />
+        </div>
+        <h2 style="font-weight: 900; color: #000;">Verify your account<br />to get started</h2>
+        <p style="font-weight: bold; font-size: 17px; margin-top: 35px;">Hi {{ user.username }}...</p>
+        <p style="font-size: 15px; line-height: 1.3; color: #000;">Please verify that you have used this<br />email
+            address to create an account with NomaCakes.<br />Use the code below</p>
+        <div
+            style="text-align:center; height: 70px; width: 450px; margin: 0 auto; background-color: #000 !important; border-radius: 3px; color: #fff;">
+            <h1 style="font-weight: 700; margin: 10px 0;">otp</h1>
+        </div>
+        <p style="color:#2196F3; font-size: 15px; line-height: 1.3;">If you did not request this email,<br />there is
+            nothing to worry about,<br />you can safely ignore it.</p>
+    </div>
+</body>
+
+</html>
+
+<!-- {% endautoescape %} -->

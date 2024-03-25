@@ -3,20 +3,21 @@ from django.core.exceptions import ValidationError
 from rest_framework import serializers
 from django.shortcuts import get_object_or_404
 
-from ..models import User
+from .models import User
 from .utils import validate_username, validate_password, validate_email, validate_contact
 from django.db import IntegrityError
 
 
 class SignupSerializer(serializers.ModelSerializer):
 
+    id= serializers.IntegerField(read_only=True)
     email = serializers.EmailField()
     username = serializers.CharField()
     contact = serializers.CharField()
 
     class Meta:
         model = User
-        fields = ['email', 'username', 'contact', 'password']
+        fields = ['id', 'email', 'username', 'contact', 'password']
         extra_kwargs = {
             'password': {
                 'write_only': True

@@ -1,4 +1,4 @@
-from ..models import User
+from .models import User
 from django.db import IntegrityError
 from rest_framework import serializers
 import re
@@ -34,6 +34,6 @@ def validate_contact(contact):
     check_contact = User.objects.filter(contact=contact)
     if check_contact.exists():
         raise serializers.ValidationError("A user with that contact already exists")
-    if not re.search(r"^[+]\d{3}[-]\d{3}[-]\d{6}$", contact):
+    if not re.search(r"^[+]\d{3}[-]\d{9}$", contact):
             raise serializers.ValidationError("Contact should be in this format '+xxx-xxx-xxxxxx'")
     return contact
