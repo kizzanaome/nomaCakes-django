@@ -1,21 +1,32 @@
 from rest_framework import serializers
 
-from apps.cakes.models import Cake
+from cakes.models import Cake
 
-from taggit.models import Tag
-from taggit_serializer.serializers import (TagListSerializerField,
-                                           TaggitSerializer)
+# from taggit.models import Tag
+# from taggit_serializer.serializers import (TagListSerializerField,
+#                                            TaggitSerializer)
 
 
-class CakesSerializer(TaggitSerializer, serializers.Serializer):
+class CakesSerializer(serializers.Serializer):
+
+    id= serializers.IntegerField(read_only=True)
     name = serializers.CharField()
     description = serializers.CharField()
     price = serializers.IntegerField()
     rating = serializers.CharField()
     category = serializers.CharField()
-    tags = TagListSerializerField()
+    # tags = TagListSerializerField()
     user_id = serializers.IntegerField(write_only=True)
-    id= serializers.IntegerField(read_only=True)
+    
+    class Meta:
+        model = Cake
+        fields = ['id', 'name', 'description', 'price', 'rating', 'category', 'user_id']
+        # extra_kwargs = {
+        #     'password': {
+        #         'write_only': True
+        #     },
+            
+        # }
 
     def create(self, validated_data):
         return Cake.objects.create(**validated_data)
@@ -26,7 +37,7 @@ class CakesSerializer(TaggitSerializer, serializers.Serializer):
         instance.price = validated_data.get('price', instance.price)
         instance.rating = validated_data.get('raring',instance.rating)
         instance.category = validated_data.get('category', instance.category)
-        instance.tags = validated_data.get('tags',instance.tags)
+        # instance.tags = validated_data.get('tags',instance.tags)
 
         instance.save()
         return instance

@@ -2,9 +2,9 @@ from django.shortcuts import get_object_or_404, render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from apps.authentication.models import User
-from apps.cakes.models import Cake
-from apps.cakes.serializers import CakesSerializer
+from users.models import User
+from cakes.models import Cake
+from .serializers import CakesSerializer
 
 
 
