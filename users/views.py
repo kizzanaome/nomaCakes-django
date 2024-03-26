@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, EmailMultiAlternatives
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_str
@@ -11,6 +11,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 from django.http import HttpResponse
+from django.utils.html import strip_tags
 
 from .serializers import (LoginSerializer,
                                                  SignupSerializer)
@@ -33,14 +34,42 @@ def signup_view(request):
         user.is_active = False
         user.save()
         current_site = get_current_site(request)
+
+        # sending a templated email
         mail_subject ='Activate your account'
-        message = render_to_string('account_activate.html', {
+        welcome_message = "Welcome " + user.username + ", to NomaCakes!"
+        # link_app = "http://localhost:8000"
+        context = {
             'user': user,           
             'domain': current_site.domain,
             'uuid': urlsafe_base64_encode(force_bytes(user.pk)),
-            'token' : account_activation_token.make_token(user)})
-        email = EmailMessage(mail_subject, message, os.environ.get('EMAIL_HOST_USER'), to=[user.email])
-        email.send()
+            'token' : account_activation_token.make_token(user),
+            "welcome_message": welcome_message, 
+            "link_app": current_site
+        }
+            
+        # print(my_recipient)
+        html_message = render_to_string("account_activate.html", context=context)
+        plain_message = strip_tags(html_message)
+        email_message = EmailMultiAlternatives(
+            subject = mail_subject, 
+            body = plain_message,
+            from_email = os.environ.get('EMAIL_HOST_USER') ,
+            to = [user.email]
+        )
+        email_message.attach_alternative(html_message, "text/html")
+        email_message.send()
+
+        # sending a non-templated email
+        # message = render_to_string('account_activate.html', {
+        #     'user': user,           
+        #     'domain': current_site.domain,
+        #     'uuid': urlsafe_base64_encode(force_bytes(user.pk)),
+        #     'token' : account_activation_token.make_token(user)})
+        # email = EmailMessage(mail_subject, message, os.environ.get('EMAIL_HOST_USER'), to=[user.email])
+        # email.send()
+
+        # saving data and returning an object
         data['response'] = 'You have successfully registered your account.'\
             ' Please confirm your email address to complete your registration.'
         data['email'] = user.email
